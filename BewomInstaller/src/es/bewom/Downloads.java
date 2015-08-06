@@ -14,13 +14,14 @@ import es.bewom.downloads.Download;
 
 public class Downloads {
 	
-	public static String server = "http://151.80.142.231/instalador/";
+	public static String server = "http://bewomdev.darkaqua.net/instalador/";
 	
 	public static String profileJson = "bewom.json";
 	
 	public static String pixelmon = "Pixelmon";
 	public static String optifine = "OptiFine";
 	public static String screen = "CustomScreen";
+	public static String minebikes = "MineBikes";
 	
 	public static String configPixelmon = "pixelmon.cfg";
 	public static String configScreen= "custom_screen.cfg";
@@ -69,6 +70,7 @@ public class Downloads {
 		pixelmon = URLConnectionReader.getText(server + "mods/" + "pixelmon.php");
 		Downloads.optifine = URLConnectionReader.getText(server + "mods/" + "optifine.php");
 		screen = URLConnectionReader.getText(server + "mods/" + "screen.php");
+		minebikes = URLConnectionReader.getText(server + "mods/" + "bikes.php");
 		
 		if(pixelmon != null && Downloads.optifine != null && screen != null){
 			
@@ -96,6 +98,10 @@ public class Downloads {
 			files[2] = screen;
 			folder[2] = "/mods/";
 			direct[2] = dir;
+			
+			files[3] = minebikes;
+			folder[3] = "/mods/";
+			direct[3] = dir;
 			
 			
 			//Borrar mods no correctos!
