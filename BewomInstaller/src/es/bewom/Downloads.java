@@ -14,7 +14,7 @@ import es.bewom.downloads.Download;
 
 public class Downloads {
 	
-	public static String server = "http://bewomdev.darkaqua.net/instalador/";
+	public static String server = "http://bewom.es/instalador/";
 	
 	public static String profileJson = "bewom.json";
 	
