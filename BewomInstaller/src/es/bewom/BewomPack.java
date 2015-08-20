@@ -29,7 +29,7 @@ public class BewomPack {
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
 	
-	public static String version = "1.4.1 ALPHA";
+	public static String version = "1.0 BETA";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
@@ -62,6 +62,7 @@ public class BewomPack {
 	private void initialize() {
 		
 		frmInstaladorBewom = new JFrame();
+		frmInstaladorBewom.getContentPane().setBackground(new Color(35, 35, 35));
 		frmInstaladorBewom.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("assets/logo_simple.png")));
 		frmInstaladorBewom.setTitle("Instalador bewom");
 		frmInstaladorBewom.setResizable(false);
@@ -76,49 +77,53 @@ public class BewomPack {
 		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, w, h);
 		frmInstaladorBewom.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInstaladorBewom.getContentPane().setLayout(null);
+		chckbxPixelmon.setForeground(new Color(255, 255, 255));
+		chckbxPixelmon.setBackground(new Color(35, 35, 35));
 		
 		chckbxPixelmon.setSelected(true);
-		chckbxPixelmon.setBounds(6, 98, 97, 23);
+		chckbxPixelmon.setBounds(6, 87, 97, 23);
 		frmInstaladorBewom.getContentPane().add(chckbxPixelmon);
 		
 		JLabel lblVa = new JLabel(version);
+		lblVa.setForeground(new Color(255, 255, 255));
 		lblVa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblVa.setEnabled(false);
-		lblVa.setBounds(368, 123, 128, 23);
+		lblVa.setBounds(368, 42, 128, 23);
 		frmInstaladorBewom.getContentPane().add(lblVa);
 		
-		btnNewButton.setBounds(368, 153, 128, 24);
+		btnNewButton.setBounds(368, 143, 128, 24);
 		frmInstaladorBewom.getContentPane().add(btnNewButton);
+		chckbxOptifine.setBackground(new Color(35, 35, 35));
+		chckbxOptifine.setForeground(new Color(255, 255, 255));
 		
 		chckbxOptifine.setSelected(true);
-		chckbxOptifine.setBounds(6, 123, 97, 23);
+		chckbxOptifine.setBounds(6, 113, 97, 23);
 		frmInstaladorBewom.getContentPane().add(chckbxOptifine);
 		progressBar.setStringPainted(true);
 		
-		progressBar.setBounds(0, 213, 506, 14);
+		progressBar.setBounds(0, 203, 506, 24);
 		progressBar.setValue(0);
-		progressBar.setForeground(new Color(51, 204, 0));
+		progressBar.setForeground(new Color(207, 50, 50));
 		frmInstaladorBewom.getContentPane().add(progressBar);
 		
-		frmtdtxtfldSda.setBounds(6, 153, 352, 24);
+		frmtdtxtfldSda.setBounds(6, 143, 352, 24);
 		frmtdtxtfldSda.setText(System.getenv("APPDATA") + "\\.minecraft");
 		if(SO.contains("mac")){
-			
 			frmtdtxtfldSda.setText(System.getProperty("user.home") + "/Library/Application Support/minecraft");
-			
+		} else if(SO.contains("nux")){
+			frmtdtxtfldSda.setText("~/.minecraft/");
 		}
 		frmInstaladorBewom.getContentPane().add(frmtdtxtfldSda);
-		
-		ImageIcon icon = new ImageIcon(getClass().getResource("assets/logo.png")); 
-		
+				
 		JLabel panel = new JLabel();
-		panel.setBounds(10, 11, 486, 105);
-		panel.setIcon(icon);
+		panel.setBounds(6, 21, 490, 44);
+		panel.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/logo.png")));
 		frmInstaladorBewom.getContentPane().add(panel);
+		lblDescargandoPixelmon.setForeground(new Color(255, 255, 255));
 		
 		lblDescargandoPixelmon.setHorizontalAlignment(SwingConstants.CENTER);
 //		lblDescargandoPixelmon.setEnabled(false);
-		lblDescargandoPixelmon.setBounds(6, 188, 490, 14);
+		lblDescargandoPixelmon.setBounds(6, 178, 490, 14);
 		frmInstaladorBewom.getContentPane().add(lblDescargandoPixelmon);
 		
 		btnNewButton.addActionListener(new ActionListener() {

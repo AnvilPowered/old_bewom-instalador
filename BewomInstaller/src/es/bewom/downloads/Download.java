@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.util.List;
 
 import es.bewom.BewomPack;
 import net.lingala.zip4j.core.ZipFile;
@@ -17,14 +18,14 @@ import net.lingala.zip4j.exception.ZipException;
 public class Download extends Thread {
 	
 	public String server;
-	public String[] file;
-	public String[] folder;
-	public String[] directory;
+	public List<String> file;
+	public List<String> folder;
+	public List<String> directory;
 	
 	public URL website;
 	public double fileSize;
 	
-	public void set(String s, String[] f, String[] t, String[] d){
+	public void set(String s, List<String> f, List<String> t, List<String> d){
 		
 		this.server = s;
 		this.file = f;
@@ -36,64 +37,60 @@ public class Download extends Thread {
 	@Override
 	public void run() {
 		
-		for (int i = 0; i < file.length; i++) {
+		for (int i = 0; i < file.size(); i++) {
 			
-			if(file[i] != null){
+			DownloadProgress dpixel = new DownloadProgress();
+			
+			try {
 				
-				DownloadProgress dpixel = new DownloadProgress();
+				BewomPack.lblDescargandoPixelmon.setText("Descargando " + file.get(i) + " . . .");
 				
-				try {
-					
-					BewomPack.lblDescargandoPixelmon.setText("Descargando " + file[i] + " . . .");
-					
-					File fios = new File(directory[i] + folder[i] + file[i]);
-					if(fios.exists()){
-						fios.delete();
-					}
-					
-					File kdir = new File(directory[i] + folder[i]);
-					if(!kdir.exists()){
-						kdir.mkdirs();						
-					}
-					
-					BewomPack.progressBar.setIndeterminate(false);
-					
-					website = new URL(server + folder[i] + file[i]);
-					URLConnection conn = website.openConnection();
-					fileSize = conn.getContentLength();
-					conn.getInputStream().close();
-					
-					dpixel.set(fileSize, directory[i] + folder[i] + file[i]);
-					dpixel.start();
-					
-					ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-					FileOutputStream fos = new FileOutputStream(directory[i] + folder[i] + file[i]);
-					fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-					fos.close();
-					
-					if(file[i].equals("libs.zip")){
-						
-						BewomPack.lblDescargandoPixelmon.setText("Descomprimiendo " + file[i] + " . . .");
-						unZipIt(directory[i] + folder[i] + file[i], directory[i] + folder[i]);
-						
-					}
-					
-					BewomPack.progressBar.setIndeterminate(true);
-					
-					dpixel.interrupt();
-					
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				File fios = new File(directory.get(i) + folder.get(i) + file.get(i));
+				if(fios.exists()){
+					fios.delete();
 				}
 				
-			}		
+				File kdir = new File(directory.get(i) + folder.get(i));
+				if(!kdir.exists()){
+					kdir.mkdirs();						
+				}
+				
+				BewomPack.progressBar.setIndeterminate(false);
+				
+				website = new URL(server + folder.get(i) + file.get(i));
+				URLConnection conn = website.openConnection();
+				fileSize = conn.getContentLength();
+				conn.getInputStream().close();
+				
+				dpixel.set(fileSize, directory.get(i) + folder.get(i) + file.get(i));
+				dpixel.start();
+				
+				ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+				FileOutputStream fos = new FileOutputStream(directory.get(i) + folder.get(i) + file.get(i));
+				fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+				fos.close();
+				
+				if(file.get(i).equals("libs.zip")){
+					
+					BewomPack.lblDescargandoPixelmon.setText("Descomprimiendo " + file.get(i) + " . . .");
+					unZipIt(directory.get(i) + folder.get(i) + file.get(i), directory.get(i) + folder.get(i));
+					
+				}
+				
+				BewomPack.progressBar.setIndeterminate(true);
+				
+				dpixel.interrupt();
+				
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 			
 		}
 		

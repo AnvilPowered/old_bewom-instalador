@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 import es.bewom.downloads.Download;
 
@@ -21,7 +23,8 @@ public class Downloads {
 	public static String pixelmon = "Pixelmon";
 	public static String optifine = "OptiFine";
 	public static String screen = "CustomScreen";
-	public static String minebikes = "MineBikes";
+	public static String minebikes = "minebike";
+	public static String money = "moneybitch";
 	
 	public static String configPixelmon = "pixelmon.cfg";
 	public static String configScreen= "custom_screen.cfg";
@@ -54,7 +57,7 @@ public class Downloads {
 			String part2 = text.substring(i, j);
 			String part3 = text.substring(k, text.length());
 			
-			String profile = "\"bewom_" + BewomPack.version + "\": {\"name\": \"bewom_" + BewomPack.version + "\",\"gameDir\": \"" + dir.replace("\\", "\\\\")  +"\",\"lastVersionId\": \"bewom\" },";
+			String profile = "\"bewom_" + BewomPack.version + "\": {\"name\": \"bewom_" + BewomPack.version + "\",\"gameDir\": \"" + dir.replace("\\", "\\\\")  +"\",\"lastVersionId\": \"bewom\" , \"javaArgs\": \"-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy -Xmn512M\"},";
 			
 			text = part1 + profile + part2 + "bewom_" + BewomPack.version + part3;
 			
@@ -71,37 +74,42 @@ public class Downloads {
 		Downloads.optifine = URLConnectionReader.getText(server + "mods/" + "optifine.php");
 		screen = URLConnectionReader.getText(server + "mods/" + "screen.php");
 		minebikes = URLConnectionReader.getText(server + "mods/" + "bikes.php");
+		money = URLConnectionReader.getText(server + "mods/" + "money.php");
 		
 		if(pixelmon != null && Downloads.optifine != null && screen != null){
 			
 			//Download mods	
-			String[] files = new String[20];
-			String[] folder = new String[20];
-			String[] direct = new String[20];
+			List<String> files = new ArrayList<String>();
+			List<String> folder = new ArrayList<String>();
+			List<String> direct = new ArrayList<String>();
 			
 			if(BewomPack.chckbxPixelmon.isSelected()){
 				
-				files[0] = pixelmon;
-				folder[0] = "/mods/";
-				direct[0] = dir;
+				files.add(pixelmon);
+				folder.add("/mods/");
+				direct.add(dir);
 				
 			}
 			
 			if(BewomPack.chckbxOptifine.isSelected()){
 				
-				files[1] = Downloads.optifine;
-				folder[1] = "/mods/";
-				direct[1] = dir;
+				files.add(Downloads.optifine);
+				folder.add("/mods/");
+				direct.add(dir);
 				
 			}
 			
-			files[2] = screen;
-			folder[2] = "/mods/";
-			direct[2] = dir;
+			files.add(screen);
+			folder.add("/mods/");
+			direct.add(dir);
 			
-			files[3] = minebikes;
-			folder[3] = "/mods/";
-			direct[3] = dir;
+			files.add(minebikes);
+			folder.add("/mods/");
+			direct.add(dir);
+			
+			files.add(money);
+			folder.add("/mods/");
+			direct.add(dir);
 			
 			
 			//Borrar mods no correctos!
@@ -137,15 +145,15 @@ public class Downloads {
 			
 			//download bewom profile
 			
-			files[5] = profileJson;
-			folder[5] = "/versions/bewom/";
-			direct[5] = nDir;
+			files.add(profileJson);
+			folder.add("/versions/bewom/");
+			direct.add(nDir);
 			
 			//download config
 			
-			files[6] = configPixelmon;
-			folder[6] = "/config/";
-			direct[6] = dir;
+			files.add(configPixelmon);
+			folder.add("/config/");
+			direct.add(dir);
 			
 			File writeFile = new File(dir + "/config/");
 			
@@ -163,9 +171,9 @@ public class Downloads {
 			
 			//download libs
 			
-			files[7] = forgeLibs;
-			folder[7] = "/";
-			direct[7] = nDir;
+			files.add(forgeLibs);
+			folder.add("/");
+			direct.add(nDir);
 			
 			BewomPack.lblDescargandoPixelmon.setText("Empezando descargas . . .");
 			Download download = new Download();
