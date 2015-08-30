@@ -29,7 +29,7 @@ public class BewomPack {
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
 	
-	public static String version = "1.2.1 BETA";
+	public static String version = "1.3 BETA";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
