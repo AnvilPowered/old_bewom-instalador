@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class BewomPack {
 
@@ -28,6 +30,8 @@ public class BewomPack {
 	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon");
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
+	public static JComboBox comboBox = new JComboBox();
+	public static JTextField txtg = new JTextField();
 	
 	public static String version = "1.3.1 BETA";
 	
@@ -74,14 +78,14 @@ public class BewomPack {
 		int h = 256;
 		int w = 512;
 		
-		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, w, h);
+		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, 512, 288);
 		frmInstaladorBewom.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInstaladorBewom.getContentPane().setLayout(null);
 		chckbxPixelmon.setForeground(new Color(255, 255, 255));
 		chckbxPixelmon.setBackground(new Color(35, 35, 35));
 		
 		chckbxPixelmon.setSelected(true);
-		chckbxPixelmon.setBounds(6, 87, 97, 23);
+		chckbxPixelmon.setBounds(6, 86, 97, 23);
 		frmInstaladorBewom.getContentPane().add(chckbxPixelmon);
 		
 		JLabel lblVa = new JLabel(version);
@@ -91,22 +95,22 @@ public class BewomPack {
 		lblVa.setBounds(368, 42, 128, 23);
 		frmInstaladorBewom.getContentPane().add(lblVa);
 		
-		btnNewButton.setBounds(368, 143, 128, 24);
+		btnNewButton.setBounds(368, 175, 128, 24);
 		frmInstaladorBewom.getContentPane().add(btnNewButton);
 		chckbxOptifine.setBackground(new Color(35, 35, 35));
 		chckbxOptifine.setForeground(new Color(255, 255, 255));
 		
 		chckbxOptifine.setSelected(true);
-		chckbxOptifine.setBounds(6, 113, 97, 23);
+		chckbxOptifine.setBounds(6, 112, 97, 23);
 		frmInstaladorBewom.getContentPane().add(chckbxOptifine);
 		progressBar.setStringPainted(true);
 		
-		progressBar.setBounds(0, 203, 506, 24);
+		progressBar.setBounds(0, 235, 506, 24);
 		progressBar.setValue(0);
 		progressBar.setForeground(new Color(207, 50, 50));
 		frmInstaladorBewom.getContentPane().add(progressBar);
 		
-		frmtdtxtfldSda.setBounds(6, 143, 352, 24);
+		frmtdtxtfldSda.setBounds(6, 175, 352, 24);
 		frmtdtxtfldSda.setText(System.getenv("APPDATA") + "\\.minecraft");
 		if(SO.contains("mac")){
 			frmtdtxtfldSda.setText(System.getProperty("user.home") + "/Library/Application Support/minecraft");
@@ -123,8 +127,24 @@ public class BewomPack {
 		
 		lblDescargandoPixelmon.setHorizontalAlignment(SwingConstants.CENTER);
 //		lblDescargandoPixelmon.setEnabled(false);
-		lblDescargandoPixelmon.setBounds(6, 178, 490, 14);
+		lblDescargandoPixelmon.setBounds(6, 210, 490, 14);
 		frmInstaladorBewom.getContentPane().add(lblDescargandoPixelmon);
+		
+		txtg.setText("1536");
+		txtg.setBounds(6, 142, 60, 24);
+		frmInstaladorBewom.getContentPane().add(txtg);
+		txtg.setColumns(10);
+		
+		JLabel lblMbDeRam = new JLabel("RAM m\u00E1xima");
+		lblMbDeRam.setForeground(Color.WHITE);
+		lblMbDeRam.setBounds(150, 143, 162, 22);
+		frmInstaladorBewom.getContentPane().add(lblMbDeRam);
+		
+		comboBox.setMaximumRowCount(2);
+		comboBox.setBounds(76, 142, 65, 24);
+		comboBox.addItem("Mb");
+		comboBox.addItem("Gb");
+		frmInstaladorBewom.getContentPane().add(comboBox);
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			
@@ -133,6 +153,8 @@ public class BewomPack {
 				
 				if(btnNewButton.getModel().isArmed()){
 					
+					comboBox.setEnabled(false);
+					txtg.setEnabled(false);
 					chckbxPixelmon.setEnabled(false);
 					chckbxOptifine.setEnabled(false);
 					frmtdtxtfldSda.setEnabled(false);

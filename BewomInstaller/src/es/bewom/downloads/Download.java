@@ -103,6 +103,8 @@ public class Download extends Thread {
 		BewomPack.chckbxPixelmon.setEnabled(true);
 		BewomPack.frmtdtxtfldSda.setEnabled(true);
 		BewomPack.btnNewButton.setEnabled(true);
+		BewomPack.comboBox.setEnabled(true);
+		BewomPack.txtg.setEnabled(true);
 		
 	}
 	

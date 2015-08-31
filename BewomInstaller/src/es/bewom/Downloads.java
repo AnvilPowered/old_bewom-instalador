@@ -57,7 +57,14 @@ public class Downloads {
 			String part2 = text.substring(i, j);
 			String part3 = text.substring(k, text.length());
 			
-			String profile = "\"bewom_" + BewomPack.version + "\": {\"name\": \"bewom_" + BewomPack.version + "\",\"gameDir\": \"" + dir.replace("\\", "\\\\")  +"\",\"lastVersionId\": \"bewom\" , \"javaArgs\": \"-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy -Xmn512M\"},";
+			String ram = BewomPack.txtg.getText();
+			if(BewomPack.comboBox.getSelectedItem().equals("Gb")){
+				ram += "G";
+			} else {
+				ram += "M";
+			}
+			
+			String profile = "\"bewom_" + BewomPack.version + "\": {\"name\": \"bewom_" + BewomPack.version + "\",\"gameDir\": \"" + dir.replace("\\", "\\\\")  +"\",\"lastVersionId\": \"bewom\" , \"javaArgs\": \"-Xmx" + ram +" -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy -Xmn512M\"},";
 			
 			text = part1 + profile + part2 + "bewom_" + BewomPack.version + part3;
 			
