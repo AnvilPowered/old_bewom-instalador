@@ -39,57 +39,60 @@ public class Download extends Thread {
 		
 		for (int i = 0; i < file.size(); i++) {
 			
-			DownloadProgress dpixel = new DownloadProgress();
-			
-			try {
+			System.out.println(file.get(i));
+			if(file.get(i) != null){
+				DownloadProgress dpixel = new DownloadProgress();
 				
-				BewomPack.lblDescargandoPixelmon.setText("Descargando " + file.get(i) + " . . .");
-				
-				File fios = new File(directory.get(i) + folder.get(i) + file.get(i));
-				if(fios.exists()){
-					fios.delete();
-				}
-				
-				File kdir = new File(directory.get(i) + folder.get(i));
-				if(!kdir.exists()){
-					kdir.mkdirs();						
-				}
-				
-				BewomPack.progressBar.setIndeterminate(false);
-				
-				website = new URL(server + folder.get(i) + file.get(i));
-				URLConnection conn = website.openConnection();
-				fileSize = conn.getContentLength();
-				conn.getInputStream().close();
-				
-				dpixel.set(fileSize, directory.get(i) + folder.get(i) + file.get(i));
-				dpixel.start();
-				
-				ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-				FileOutputStream fos = new FileOutputStream(directory.get(i) + folder.get(i) + file.get(i));
-				fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-				fos.close();
-				
-				if(file.get(i).equals("libs.zip")){
+				try {
 					
-					BewomPack.lblDescargandoPixelmon.setText("Descomprimiendo " + file.get(i) + " . . .");
-					unZipIt(directory.get(i) + folder.get(i) + file.get(i), directory.get(i) + folder.get(i));
+					BewomPack.lblDescargandoPixelmon.setText("Descargando " + file.get(i) + " . . .");
 					
+					File fios = new File(directory.get(i) + folder.get(i) + file.get(i));
+					if(fios.exists()){
+						fios.delete();
+					}
+					
+					File kdir = new File(directory.get(i) + folder.get(i));
+					if(!kdir.exists()){
+						kdir.mkdirs();						
+					}
+					
+					BewomPack.progressBar.setIndeterminate(false);
+					
+					website = new URL(server + folder.get(i) + file.get(i));
+					URLConnection conn = website.openConnection();
+					fileSize = conn.getContentLength();
+					conn.getInputStream().close();
+					
+					dpixel.set(fileSize, directory.get(i) + folder.get(i) + file.get(i));
+					dpixel.start();
+					
+					ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+					FileOutputStream fos = new FileOutputStream(directory.get(i) + folder.get(i) + file.get(i));
+					fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+					fos.close();
+					
+					if(file.get(i).equals("libs.zip")){
+						
+						BewomPack.lblDescargandoPixelmon.setText("Descomprimiendo " + file.get(i) + " . . .");
+						unZipIt(directory.get(i) + folder.get(i) + file.get(i), directory.get(i) + folder.get(i));
+						
+					}
+					
+					BewomPack.progressBar.setIndeterminate(true);
+					
+					dpixel.interrupt();
+					
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				
-				BewomPack.progressBar.setIndeterminate(true);
-				
-				dpixel.interrupt();
-				
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}	
 			
 		}

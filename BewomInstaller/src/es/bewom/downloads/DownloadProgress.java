@@ -27,7 +27,8 @@ public class DownloadProgress extends Thread {
 			
 			BewomPack.progressBar.setValue(progress);
 			
-			if(progress == 100){
+			System.out.println(progress);
+			if(progress >= 99){
 				
 				this.interrupt();
 				break;

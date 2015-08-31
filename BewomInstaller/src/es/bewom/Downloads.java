@@ -155,6 +155,12 @@ public class Downloads {
 			folder.add("/config/");
 			direct.add(dir);
 			
+			//download libs
+			
+			files.add(forgeLibs);
+			folder.add("/");
+			direct.add(nDir);
+			
 			File writeFile = new File(dir + "/config/");
 			
 			if(!writeFile.exists()){
@@ -169,11 +175,7 @@ public class Downloads {
 			write.write(version);
 			write.close();
 			
-			//download libs
 			
-			files.add(forgeLibs);
-			folder.add("/");
-			direct.add(nDir);
 			
 			BewomPack.lblDescargandoPixelmon.setText("Empezando descargas . . .");
 			Download download = new Download();
