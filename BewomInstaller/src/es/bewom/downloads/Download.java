@@ -39,7 +39,6 @@ public class Download extends Thread {
 		
 		for (int i = 0; i < file.size(); i++) {
 			
-//			System.out.println(file.get(i));
 			if(file.get(i) != null){
 				DownloadProgress dpixel = new DownloadProgress();
 				
