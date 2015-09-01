@@ -26,14 +26,14 @@ public class BewomPack {
 	public static  JLabel lblDescargandoPixelmon = new JLabel("Cierra el launcher de minecraft y el juego!");
 	public static JProgressBar progressBar = new JProgressBar();
 	
-	public static JCheckBox chckbxOptifine = new JCheckBox("Optifine");
+	public static JCheckBox chckbxOptifine = new JCheckBox("Optifine (No lo recomendamos, puede ocasionar crashes)");
 	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon");
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
 	public static JComboBox comboBox = new JComboBox();
 	public static JTextField txtg = new JTextField();
 	
-	public static String version = "1.3.1 BETA";
+	public static String version = "1.3.2 BETA";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
@@ -99,9 +99,7 @@ public class BewomPack {
 		frmInstaladorBewom.getContentPane().add(btnNewButton);
 		chckbxOptifine.setBackground(new Color(35, 35, 35));
 		chckbxOptifine.setForeground(new Color(255, 255, 255));
-		
-		chckbxOptifine.setSelected(true);
-		chckbxOptifine.setBounds(6, 112, 97, 23);
+		chckbxOptifine.setBounds(6, 112, 490, 23);
 		frmInstaladorBewom.getContentPane().add(chckbxOptifine);
 		progressBar.setStringPainted(true);
 		

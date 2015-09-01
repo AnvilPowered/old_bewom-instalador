@@ -104,6 +104,13 @@ public class Downloads {
 				folder.add("/mods/");
 				direct.add(dir);
 				
+			} else {
+				
+				File fios = new File(dir + "/mods/" + Downloads.optifine);
+				if(fios.exists()){
+					fios.delete();
+				}
+				
 			}
 			
 			files.add(screen);
