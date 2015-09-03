@@ -33,7 +33,7 @@ public class BewomPack {
 	public static JComboBox comboBox = new JComboBox();
 	public static JTextField txtg = new JTextField();
 	
-	public static String version = "1.3.2 BETA";
+	public static String version = "1.4 BETA";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
@@ -66,10 +66,11 @@ public class BewomPack {
 	private void initialize() {
 		
 		frmInstaladorBewom = new JFrame();
+		frmInstaladorBewom.setAlwaysOnTop(true);
+		frmInstaladorBewom.setResizable(false);
 		frmInstaladorBewom.getContentPane().setBackground(new Color(35, 35, 35));
 		frmInstaladorBewom.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("assets/logo_simple.png")));
 		frmInstaladorBewom.setTitle("Instalador bewom");
-		frmInstaladorBewom.setResizable(false);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) screenSize.getWidth();
