@@ -64,7 +64,19 @@ public class Downloads {
 				ram += "M";
 			}
 			
-			String profile = "\"bewom_" + BewomPack.version + "\": {\"name\": \"bewom_" + BewomPack.version + "\",\"gameDir\": \"" + dir.replace("\\", "\\\\")  +"\",\"lastVersionId\": \"bewom\" , \"javaArgs\": \"-Xmx" + ram +" -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy -Xmn512M\"},";
+			int width = 1600;
+			if(!BewomPack.resWidth.getText().isEmpty()){
+				width = Integer.parseInt(BewomPack.resWidth.getText());
+			}
+			int height = 900;
+			if(!BewomPack.resHeight.getText().isEmpty()){
+				height = Integer.parseInt(BewomPack.resHeight.getText());
+			}
+			String show = "keep the launcher open";
+			if(!BewomPack.showLauncher.isSelected()){
+				show = "hide launcher and re-open when game closes";
+			}
+			String profile = "\"bewom_" + BewomPack.version + "\": {\"name\": \"bewom_" + BewomPack.version + "\",\"gameDir\": \"" + dir.replace("\\", "\\\\")  +"\",\"lastVersionId\": \"bewom\" , \"javaArgs\": \"-Xmx" + ram +" -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy -Xmn512M\", \"resolution\": {\"width\": " + width + ", \"height\": " + height + "}, \"launcherVisibilityOnGameClose\": \"" + show + "\"},";
 			
 			text = part1 + profile + part2 + "bewom_" + BewomPack.version + part3;
 			
@@ -205,6 +217,9 @@ public class Downloads {
 			BewomPack.chckbxPixelmon.setEnabled(true);
 			BewomPack.frmtdtxtfldSda.setEnabled(true);
 			BewomPack.btnNewButton.setEnabled(true);
+			BewomPack.showLauncher.setEnabled(true);
+			BewomPack.resWidth.setEnabled(true);
+			BewomPack.resHeight.setEnabled(true);
 			
 		}
 				

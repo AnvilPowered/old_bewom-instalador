@@ -105,6 +105,9 @@ public class Download extends Thread {
 		BewomPack.btnNewButton.setEnabled(true);
 		BewomPack.comboBox.setEnabled(true);
 		BewomPack.txtg.setEnabled(true);
+		BewomPack.showLauncher.setEnabled(true);
+		BewomPack.resWidth.setEnabled(true);
+		BewomPack.resHeight.setEnabled(true);
 		
 	}
 	
