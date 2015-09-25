@@ -34,11 +34,11 @@ public class BewomPack {
 	public static JComboBox comboBox = new JComboBox();
 	public static JTextField txtg = new JTextField();
 	
-	public static String version = "1.0 PRE-RELEASE";
+	public static String version = "1.0.0";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
-	public static JCheckBox showLauncher = new JCheckBox("Mantener el launcher abierto.");
+	public static JCheckBox showLauncher = new JCheckBox("Mantener el launcher de minecraft abierto");
 	public static JTextField resWidth;
 	public static JTextField resHeight;
 	private final JPanel panel_2 = new JPanel();
@@ -134,9 +134,9 @@ public class BewomPack {
 		lblDescargandoPixelmon.setForeground(new Color(51, 51, 51));
 		
 		lblDescargandoPixelmon.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblDescargandoPixelmon.setEnabled(false);
-		lblDescargandoPixelmon.setBounds(6, 275, 588, 14);
-		frmInstaladorBewom.getContentPane().add(lblDescargandoPixelmon);
+		//		lblDescargandoPixelmon.setEnabled(false);
+				lblDescargandoPixelmon.setBounds(6, 275, 588, 14);
+				frmInstaladorBewom.getContentPane().add(lblDescargandoPixelmon);
 		
 		txtg.setText("1536");
 		txtg.setBounds(6, 205, 60, 24);
@@ -156,20 +156,20 @@ public class BewomPack {
 		frmInstaladorBewom.getContentPane().add(comboBox);
 		
 		resWidth = new JTextField();
-		resWidth.setText("1600");
+		resWidth.setText("1280");
 		resWidth.setColumns(10);
 		resWidth.setBounds(6, 170, 60, 24);
 		frmInstaladorBewom.getContentPane().add(resWidth);
 		
 		resHeight = new JTextField();
-		resHeight.setText("900");
+		resHeight.setText("720");
 		resHeight.setColumns(10);
 		resHeight.setBounds(76, 170, 60, 24);
 		frmInstaladorBewom.getContentPane().add(resHeight);
 		
-		JLabel lblResolucionInicial = new JLabel("Resolucion de la ventana");
+		JLabel lblResolucionInicial = new JLabel("Resolucion de la ventana de minecraft");
 		lblResolucionInicial.setForeground(new Color(51, 51, 51));
-		lblResolucionInicial.setBounds(146, 170, 162, 22);
+		lblResolucionInicial.setBounds(146, 170, 321, 22);
 		frmInstaladorBewom.getContentPane().add(lblResolucionInicial);
 		
 		showLauncher.setSelected(true);
@@ -179,7 +179,7 @@ public class BewomPack {
 		frmInstaladorBewom.getContentPane().add(showLauncher);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(38, 114, 179));
+		panel_1.setBackground(new Color(207, 50, 50));
 		panel_1.setBounds(0, 0, 604, 64);
 		frmInstaladorBewom.getContentPane().add(panel_1);
 		panel_2.setBackground(new Color(51, 51, 51));
