@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -26,22 +27,23 @@ public class BewomPack {
 	
 	public static  JLabel lblDescargandoPixelmon = new JLabel("Cierra el launcher de minecraft y el juego!");
 	public static JProgressBar progressBar = new JProgressBar();
-	
-	public static JCheckBox chckbxOptifine = new JCheckBox("Optifine (No recomendado, puede causar problemas)");
-	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon (Versión 4.0.7)");
+	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon (Versi\u00F3n 4.0.8)");
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
+	@SuppressWarnings("rawtypes")
 	public static JComboBox comboBox = new JComboBox();
 	public static JTextField txtg = new JTextField();
 	
-	public static String version = "1.0.0";
+	public static String version = "1.1.0";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
 	public static JCheckBox showLauncher = new JCheckBox("Mantener el launcher de minecraft abierto");
 	public static JTextField resWidth;
 	public static JTextField resHeight;
-	private final JPanel panel_2 = new JPanel();
+	
+	public static JLabel lblMbDeRam = new JLabel("RAM m\u00E1xima");
+	public static JLabel lblResolucionInicial = new JLabel("Resolucion de la ventana de minecraft");
 	
 	/**
 	 * Launch the application.
@@ -69,6 +71,7 @@ public class BewomPack {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	private void initialize() {
 		
 		frmInstaladorBewom = new JFrame();
@@ -85,38 +88,35 @@ public class BewomPack {
 		int h = 256;
 		int w = 512;
 		
-		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, 610, 353);
+		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, 610, 280);
 		frmInstaladorBewom.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInstaladorBewom.getContentPane().setLayout(null);
+		chckbxPixelmon.setHorizontalAlignment(SwingConstants.LEFT);
+		chckbxPixelmon.setBounds(6, 104, 306, 23);
 		chckbxPixelmon.setForeground(new Color(51, 51, 51));
 		chckbxPixelmon.setBackground(new Color(255, 255, 255));
 		
 		chckbxPixelmon.setSelected(true);
-		chckbxPixelmon.setBounds(6, 88, 306, 23);
 		frmInstaladorBewom.getContentPane().add(chckbxPixelmon);
-		
-		JLabel lblVa = new JLabel(version);
-		lblVa.setForeground(new Color(51, 51, 51));
-		lblVa.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVa.setBounds(466, 206, 128, 23);
-		frmInstaladorBewom.getContentPane().add(lblVa);
-		btnNewButton.setForeground(new Color(51, 51, 51));
-		
-		btnNewButton.setBounds(466, 240, 128, 24);
-		frmInstaladorBewom.getContentPane().add(btnNewButton);
-		chckbxOptifine.setBackground(new Color(255, 255, 255));
-		chckbxOptifine.setForeground(new Color(51, 51, 51));
-		chckbxOptifine.setBounds(6, 114, 490, 23);
-		frmInstaladorBewom.getContentPane().add(chckbxOptifine);
-		progressBar.setStringPainted(true);
-		
-		progressBar.setBounds(0, 300, 604, 24);
+		progressBar.setBounds(-4, 64, 612, 4);
+				
+		progressBar.setBackground(new Color(0, 0, 0));
+		frmInstaladorBewom.getContentPane().add(progressBar);
 		progressBar.setValue(0);
 		progressBar.setForeground(new Color(207, 50, 50));
-		frmInstaladorBewom.getContentPane().add(progressBar);
-		frmtdtxtfldSda.setBackground(Color.WHITE);
+		progressBar.setBackground(new Color(51, 51, 51));
+		progressBar.setBorder(BorderFactory.createEmptyBorder());
 		
-		frmtdtxtfldSda.setBounds(6, 240, 450, 24);
+		JLabel lblVa = new JLabel(version);
+		lblVa.setBounds(470, 191, 128, 23);
+		lblVa.setForeground(new Color(51, 51, 51));
+		lblVa.setHorizontalAlignment(SwingConstants.CENTER);
+		frmInstaladorBewom.getContentPane().add(lblVa);
+		btnNewButton.setBounds(470, 220, 128, 24);
+		btnNewButton.setForeground(new Color(51, 51, 51));
+		frmInstaladorBewom.getContentPane().add(btnNewButton);
+		frmtdtxtfldSda.setBounds(6, 220, 461, 24);
+		frmtdtxtfldSda.setBackground(Color.WHITE);
 		frmtdtxtfldSda.setText(System.getenv("APPDATA") + "\\.minecraft");
 		if(SO.contains("mac")){
 			frmtdtxtfldSda.setText(System.getProperty("user.home") + "/Library/Application Support/minecraft");
@@ -126,66 +126,59 @@ public class BewomPack {
 		frmInstaladorBewom.getContentPane().add(frmtdtxtfldSda);
 				
 		JLabel panel = new JLabel();
-		panel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.setBounds(0, 0, 604, 64);
+		panel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/logo_simple.png")));
 		frmInstaladorBewom.getContentPane().add(panel);
+		lblDescargandoPixelmon.setBounds(6, 83, 588, 14);
 		
 		lblDescargandoPixelmon.setForeground(new Color(51, 51, 51));
 		
 		lblDescargandoPixelmon.setHorizontalAlignment(SwingConstants.CENTER);
-		//		lblDescargandoPixelmon.setEnabled(false);
-				lblDescargandoPixelmon.setBounds(6, 275, 588, 14);
 				frmInstaladorBewom.getContentPane().add(lblDescargandoPixelmon);
+		txtg.setBounds(6, 190, 60, 24);
 		
-		txtg.setText("1536");
-		txtg.setBounds(6, 205, 60, 24);
+		txtg.setText("1024");
 		frmInstaladorBewom.getContentPane().add(txtg);
 		txtg.setColumns(10);
 		
-		JLabel lblMbDeRam = new JLabel("RAM m\u00E1xima");
+		lblMbDeRam.setBounds(137, 191, 162, 22);
 		lblMbDeRam.setForeground(new Color(51, 51, 51));
-		lblMbDeRam.setBounds(146, 206, 162, 22);
 		frmInstaladorBewom.getContentPane().add(lblMbDeRam);
+		comboBox.setBounds(72, 190, 60, 24);
 		comboBox.setBackground(Color.WHITE);
 		
 		comboBox.setMaximumRowCount(2);
-		comboBox.setBounds(76, 205, 60, 24);
 		comboBox.addItem("Mb");
 		comboBox.addItem("Gb");
 		frmInstaladorBewom.getContentPane().add(comboBox);
 		
 		resWidth = new JTextField();
+		resWidth.setBounds(6, 160, 60, 24);
 		resWidth.setText("1280");
 		resWidth.setColumns(10);
-		resWidth.setBounds(6, 170, 60, 24);
 		frmInstaladorBewom.getContentPane().add(resWidth);
 		
 		resHeight = new JTextField();
+		resHeight.setBounds(72, 160, 60, 24);
 		resHeight.setText("720");
 		resHeight.setColumns(10);
-		resHeight.setBounds(76, 170, 60, 24);
 		frmInstaladorBewom.getContentPane().add(resHeight);
 		
-		JLabel lblResolucionInicial = new JLabel("Resolucion de la ventana de minecraft");
+		lblResolucionInicial.setBounds(137, 161, 321, 22);
 		lblResolucionInicial.setForeground(new Color(51, 51, 51));
-		lblResolucionInicial.setBounds(146, 170, 321, 22);
 		frmInstaladorBewom.getContentPane().add(lblResolucionInicial);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 0, 604, 64);
+		panel_1.setBackground(new Color(255, 215, 0));
+		frmInstaladorBewom.getContentPane().add(panel_1);
+		showLauncher.setBounds(6, 130, 490, 23);
 		
 		showLauncher.setSelected(true);
 		showLauncher.setForeground(new Color(51, 51, 51));
 		showLauncher.setBackground(new Color(255, 255, 255));
-		showLauncher.setBounds(6, 140, 490, 23);
 		frmInstaladorBewom.getContentPane().add(showLauncher);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(207, 50, 50));
-		panel_1.setBounds(0, 0, 604, 64);
-		frmInstaladorBewom.getContentPane().add(panel_1);
-		panel_2.setBackground(new Color(51, 51, 51));
-		panel_2.setBounds(0, 61, 604, 8);
-		
-		frmInstaladorBewom.getContentPane().add(panel_2);
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			
@@ -197,12 +190,13 @@ public class BewomPack {
 					comboBox.setEnabled(false);
 					txtg.setEnabled(false);
 					chckbxPixelmon.setEnabled(false);
-					chckbxOptifine.setEnabled(false);
 					frmtdtxtfldSda.setEnabled(false);
 					btnNewButton.setEnabled(false);
 					showLauncher.setEnabled(false);
 					resWidth.setEnabled(false);
 					resHeight.setEnabled(false);
+					lblResolucionInicial.setEnabled(false);
+					lblMbDeRam.setEnabled(false);
 					lblDescargandoPixelmon.setText("Empezando la instalación...");
 					progressBar.setIndeterminate(true);
 					

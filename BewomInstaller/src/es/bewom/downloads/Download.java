@@ -99,7 +99,6 @@ public class Download extends Thread {
 		BewomPack.lblDescargandoPixelmon.setText("Listo para jugar!");
 		BewomPack.progressBar.setIndeterminate(false);
 		BewomPack.progressBar.setValue(0);
-		BewomPack.chckbxOptifine.setEnabled(true);
 		BewomPack.chckbxPixelmon.setEnabled(true);
 		BewomPack.frmtdtxtfldSda.setEnabled(true);
 		BewomPack.btnNewButton.setEnabled(true);
@@ -108,6 +107,8 @@ public class Download extends Thread {
 		BewomPack.showLauncher.setEnabled(true);
 		BewomPack.resWidth.setEnabled(true);
 		BewomPack.resHeight.setEnabled(true);
+		BewomPack.lblResolucionInicial.setEnabled(true);
+		BewomPack.lblMbDeRam.setEnabled(true);
 		
 	}
 	

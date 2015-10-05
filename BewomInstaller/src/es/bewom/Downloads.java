@@ -21,7 +21,6 @@ public class Downloads {
 	public static String profileJson = "bewom.json";
 	
 	public static String pixelmon = "Pixelmon";
-	public static String optifine = "OptiFine";
 	public static String screen = "CustomScreen";
 	public static String minebikes = "minebike";
 	public static String money = "moneybitch";
@@ -90,12 +89,11 @@ public class Downloads {
 		BewomPack.lblDescargandoPixelmon.setText("Comprobando versiones . . .");
 		
 		pixelmon = URLConnectionReader.getText(server + "mods/" + "pixelmon.php");
-		Downloads.optifine = URLConnectionReader.getText(server + "mods/" + "optifine.php");
 		screen = URLConnectionReader.getText(server + "mods/" + "screen.php");
 		minebikes = URLConnectionReader.getText(server + "mods/" + "bikes.php");
 		money = URLConnectionReader.getText(server + "mods/" + "money.php");
 		
-		if(pixelmon != null && Downloads.optifine != null && screen != null){
+		if(pixelmon != null && screen != null){
 			
 			//Download mods	
 			List<String> files = new ArrayList<String>();
@@ -107,21 +105,6 @@ public class Downloads {
 				files.add(pixelmon);
 				folder.add("/mods/");
 				direct.add(dir);
-				
-			}
-			
-			if(BewomPack.chckbxOptifine.isSelected()){
-				
-				files.add(Downloads.optifine);
-				folder.add("/mods/");
-				direct.add(dir);
-				
-			} else {
-				
-				File fios = new File(dir + "/mods/" + Downloads.optifine);
-				if(fios.exists()){
-					fios.delete();
-				}
 				
 			}
 			
@@ -140,7 +123,7 @@ public class Downloads {
 			
 			//Borrar mods no correctos!
 			BewomPack.lblDescargandoPixelmon.setText("Borrando mods incorrectos. . .");
-			String[] fil = {pixelmon, Downloads.optifine, screen};
+			String[] fil = {pixelmon, screen};
 			File f = new File(dir + "/mods/");
 			String[] ffiles = f.list();
 			
@@ -149,9 +132,9 @@ public class Downloads {
 				for (int l = 0; l < ffiles.length; l++) {
 					
 					File m = new File(f, ffiles[l]);
-					int k = 3;
+					int k = fil.length;
 					
-					for (int i = 0; i < 3; i++) {
+					for (int i = 0; i < fil.length; i++) {
 						
 						if(!m.getName().equals(fil[i])){
 							
@@ -213,13 +196,14 @@ public class Downloads {
 			BewomPack.lblDescargandoPixelmon.setText("Hay problemas con la conexión a la red!");
 			BewomPack.progressBar.setIndeterminate(false);
 			BewomPack.progressBar.setValue(0);
-			BewomPack.chckbxOptifine.setEnabled(true);
 			BewomPack.chckbxPixelmon.setEnabled(true);
 			BewomPack.frmtdtxtfldSda.setEnabled(true);
 			BewomPack.btnNewButton.setEnabled(true);
 			BewomPack.showLauncher.setEnabled(true);
 			BewomPack.resWidth.setEnabled(true);
 			BewomPack.resHeight.setEnabled(true);
+			BewomPack.lblResolucionInicial.setEnabled(true);
+			BewomPack.lblMbDeRam.setEnabled(true);
 			
 		}
 				
