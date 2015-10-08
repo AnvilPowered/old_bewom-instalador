@@ -34,7 +34,7 @@ public class BewomPack {
 	public static JComboBox comboBox = new JComboBox();
 	public static JTextField txtg = new JTextField();
 	
-	public static String version = "1.1.0";
+	public static String version = "1.1.2";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
@@ -88,7 +88,7 @@ public class BewomPack {
 		int h = 256;
 		int w = 512;
 		
-		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, 610, 280);
+		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, 468, 280);
 		frmInstaladorBewom.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInstaladorBewom.getContentPane().setLayout(null);
 		chckbxPixelmon.setHorizontalAlignment(SwingConstants.LEFT);
@@ -98,7 +98,7 @@ public class BewomPack {
 		
 		chckbxPixelmon.setSelected(true);
 		frmInstaladorBewom.getContentPane().add(chckbxPixelmon);
-		progressBar.setBounds(-4, 64, 612, 4);
+		progressBar.setBounds(-4, 64, 468, 6);
 				
 		progressBar.setBackground(new Color(0, 0, 0));
 		frmInstaladorBewom.getContentPane().add(progressBar);
@@ -108,14 +108,14 @@ public class BewomPack {
 		progressBar.setBorder(BorderFactory.createEmptyBorder());
 		
 		JLabel lblVa = new JLabel(version);
-		lblVa.setBounds(470, 191, 128, 23);
+		lblVa.setBounds(330, 191, 128, 23);
 		lblVa.setForeground(new Color(51, 51, 51));
 		lblVa.setHorizontalAlignment(SwingConstants.CENTER);
 		frmInstaladorBewom.getContentPane().add(lblVa);
-		btnNewButton.setBounds(470, 220, 128, 24);
+		btnNewButton.setBounds(330, 220, 128, 24);
 		btnNewButton.setForeground(new Color(51, 51, 51));
 		frmInstaladorBewom.getContentPane().add(btnNewButton);
-		frmtdtxtfldSda.setBounds(6, 220, 461, 24);
+		frmtdtxtfldSda.setBounds(6, 220, 321, 24);
 		frmtdtxtfldSda.setBackground(Color.WHITE);
 		frmtdtxtfldSda.setText(System.getenv("APPDATA") + "\\.minecraft");
 		if(SO.contains("mac")){
@@ -126,11 +126,11 @@ public class BewomPack {
 		frmInstaladorBewom.getContentPane().add(frmtdtxtfldSda);
 				
 		JLabel panel = new JLabel();
-		panel.setBounds(0, 0, 604, 64);
+		panel.setBounds(0, 0, 464, 64);
 		panel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/logo_simple.png")));
 		frmInstaladorBewom.getContentPane().add(panel);
-		lblDescargandoPixelmon.setBounds(6, 83, 588, 14);
+		lblDescargandoPixelmon.setBounds(6, 83, 452, 14);
 		
 		lblDescargandoPixelmon.setForeground(new Color(51, 51, 51));
 		
@@ -138,7 +138,7 @@ public class BewomPack {
 				frmInstaladorBewom.getContentPane().add(lblDescargandoPixelmon);
 		txtg.setBounds(6, 190, 60, 24);
 		
-		txtg.setText("1024");
+		txtg.setText("1536");
 		frmInstaladorBewom.getContentPane().add(txtg);
 		txtg.setColumns(10);
 		
@@ -170,8 +170,8 @@ public class BewomPack {
 		frmInstaladorBewom.getContentPane().add(lblResolucionInicial);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 0, 604, 64);
-		panel_1.setBackground(new Color(255, 215, 0));
+		panel_1.setBounds(0, 0, 464, 64);
+		panel_1.setBackground(new Color(255, 140, 0));
 		frmInstaladorBewom.getContentPane().add(panel_1);
 		showLauncher.setBounds(6, 130, 490, 23);
 		
