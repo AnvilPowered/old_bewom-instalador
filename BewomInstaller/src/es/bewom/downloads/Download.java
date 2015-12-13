@@ -102,13 +102,21 @@ public class Download extends Thread {
 		BewomPack.chckbxPixelmon.setEnabled(true);
 		BewomPack.frmtdtxtfldSda.setEnabled(true);
 		BewomPack.btnNewButton.setEnabled(true);
-		BewomPack.comboBox.setEnabled(true);
-		BewomPack.txtg.setEnabled(true);
 		BewomPack.showLauncher.setEnabled(true);
-		BewomPack.resWidth.setEnabled(true);
-		BewomPack.resHeight.setEnabled(true);
-		BewomPack.lblResolucionInicial.setEnabled(true);
-		BewomPack.lblMbDeRam.setEnabled(true);
+		
+		BewomPack.checkRAM.setEnabled(true);
+		if(BewomPack.checkRAM.isSelected()){
+			BewomPack.RAMType.setEnabled(true);
+			BewomPack.RAM.setEnabled(true);
+			BewomPack.lblMbDeRam.setEnabled(true);
+		}
+		
+		BewomPack.checkResolution.setEnabled(true);
+		if(BewomPack.checkResolution.isSelected()){
+			BewomPack.resHeight.setEnabled(true);
+			BewomPack.resWidth.setEnabled(true);
+			BewomPack.lblResolucionInicial.setEnabled(true);
+		}
 		
 	}
 	

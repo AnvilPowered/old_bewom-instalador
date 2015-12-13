@@ -16,19 +16,23 @@ import es.bewom.downloads.Download;
 
 public class Downloads {
 	
-	public static String server = "http://bewom.es/instalador/";
+	public static String server 			= "http://bewom.es/instalador/";
 	
-	public static String profileJson = "bewom.json";
+	public static String profileJson 		= "bewom.json";
 	
-	public static String pixelmon = "Pixelmon";
-	public static String screen = "CustomScreen";
-	public static String minebikes = "minebike";
-	public static String money = "moneybitch";
+	public static String pixelmon 			= "Pixelmon";
+	public static String screen 			= "CustomScreen";
+	public static String minebikes 		= "minebike";
+	public static String money 			= "moneybitch";
+	public static String evs_ivs 			= "evs-ivs";
 	
-	public static String configPixelmon = "pixelmon.cfg";
-	public static String configScreen= "custom_screen.cfg";
+	public static String minimapa			= "blocks";
+	public static String iChunUtil			= "iChunUtil";
 	
-	public static String forgeLibs = "libs.zip";
+	public static String configPixelmon 	= "pixelmon.hocon";
+	public static String configScreen		= "custom_screen.cfg";
+	
+	public static String forgeLibs 		= "libs.zip";
 	
 	public static BufferedReader br;
 	
@@ -55,27 +59,45 @@ public class Downloads {
 			String part1 = text.substring(0, i);
 			String part2 = text.substring(i, j);
 			String part3 = text.substring(k, text.length());
+						
+			String ramm = "";
 			
-			String ram = BewomPack.txtg.getText();
-			if(BewomPack.comboBox.getSelectedItem().equals("Gb")){
-				ram += "G";
-			} else {
-				ram += "M";
+			if(BewomPack.checkRAM.isSelected()){
+				
+				String ram = BewomPack.RAM.getText();
+				if(BewomPack.RAMType.getSelectedItem().equals("Gb")){
+					ram += "G";
+				} else {
+					ram += "M";
+				}
+				
+				ramm = ", \"javaArgs\": \"-Xmx" + ram +" -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy -Xmn512M\"";
+				
 			}
 			
-			int width = 1600;
-			if(!BewomPack.resWidth.getText().isEmpty()){
-				width = Integer.parseInt(BewomPack.resWidth.getText());
+			String resolution = "";
+			
+			if(BewomPack.checkResolution.isSelected()){
+				
+				int width = 1600;
+				if(!BewomPack.resWidth.getText().isEmpty()){
+					width = Integer.parseInt(BewomPack.resWidth.getText());
+				}
+				int height = 900;
+				if(!BewomPack.resHeight.getText().isEmpty()){
+					height = Integer.parseInt(BewomPack.resHeight.getText());
+				}
+				
+				resolution = ", \"resolution\": {\"width\": " + width + ", \"height\": " + height + "}";
+				
 			}
-			int height = 900;
-			if(!BewomPack.resHeight.getText().isEmpty()){
-				height = Integer.parseInt(BewomPack.resHeight.getText());
-			}
+			
 			String show = "keep the launcher open";
 			if(!BewomPack.showLauncher.isSelected()){
 				show = "hide launcher and re-open when game closes";
 			}
-			String profile = "\"bewom_" + BewomPack.version + "\": {\"name\": \"bewom_" + BewomPack.version + "\",\"gameDir\": \"" + dir.replace("\\", "\\\\")  +"\",\"lastVersionId\": \"bewom\" , \"javaArgs\": \"-Xmx" + ram +" -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy -Xmn512M\", \"resolution\": {\"width\": " + width + ", \"height\": " + height + "}, \"launcherVisibilityOnGameClose\": \"" + show + "\"},";
+			
+			String profile = "\"bewom_" + BewomPack.version + "\": {\"name\": \"bewom_" + BewomPack.version + "\",\"gameDir\": \"" + dir.replace("\\", "\\\\")  +"\",\"lastVersionId\": \"bewom\" " + ramm + resolution + ", \"launcherVisibilityOnGameClose\": \"" + show + "\"},";
 			
 			text = part1 + profile + part2 + "bewom_" + BewomPack.version + part3;
 			
@@ -88,10 +110,14 @@ public class Downloads {
 		//Load versions
 		BewomPack.lblDescargandoPixelmon.setText("Comprobando versiones . . .");
 		
-		pixelmon = URLConnectionReader.getText(server + "mods/" + "pixelmon.php");
-		screen = URLConnectionReader.getText(server + "mods/" + "screen.php");
-		minebikes = URLConnectionReader.getText(server + "mods/" + "bikes.php");
-		money = URLConnectionReader.getText(server + "mods/" + "money.php");
+		pixelmon 	= URLConnectionReader.getText(server + "mods/" + "pixelmon.php");
+		screen 		= URLConnectionReader.getText(server + "mods/" + "screen.php");
+		minebikes 	= URLConnectionReader.getText(server + "mods/" + "bikes.php");
+		money 		= URLConnectionReader.getText(server + "mods/" + "money.php");
+		evs_ivs		= URLConnectionReader.getText(server + "mods/" + "evs-ivs.php");
+		
+		minimapa 	= URLConnectionReader.getText(server + "mods/" + "blocks.php");
+		iChunUtil	= URLConnectionReader.getText(server + "mods/" + "iChunUtil.php");
 		
 		if(pixelmon != null && screen != null){
 			
@@ -120,6 +146,17 @@ public class Downloads {
 			folder.add("/mods/");
 			direct.add(dir);
 			
+			files.add(evs_ivs);
+			folder.add("/mods/");
+			direct.add(dir);
+			
+			files.add(minimapa);
+			folder.add("/mods/");
+			direct.add(dir);
+			
+			files.add(iChunUtil);
+			folder.add("/mods/");
+			direct.add(dir);
 			
 			//Borrar mods no correctos!
 			BewomPack.lblDescargandoPixelmon.setText("Borrando mods incorrectos. . .");
@@ -200,10 +237,22 @@ public class Downloads {
 			BewomPack.frmtdtxtfldSda.setEnabled(true);
 			BewomPack.btnNewButton.setEnabled(true);
 			BewomPack.showLauncher.setEnabled(true);
-			BewomPack.resWidth.setEnabled(true);
-			BewomPack.resHeight.setEnabled(true);
 			BewomPack.lblResolucionInicial.setEnabled(true);
 			BewomPack.lblMbDeRam.setEnabled(true);
+			
+			BewomPack.checkRAM.setEnabled(true);
+			if(BewomPack.checkRAM.isSelected()){
+				BewomPack.RAMType.setEnabled(true);
+				BewomPack.RAM.setEnabled(true);
+				BewomPack.lblMbDeRam.setEnabled(true);
+			}
+			
+			BewomPack.checkResolution.setEnabled(true);
+			if(BewomPack.checkResolution.isSelected()){
+				BewomPack.resHeight.setEnabled(true);
+				BewomPack.resWidth.setEnabled(true);
+				BewomPack.lblResolucionInicial.setEnabled(true);
+			}
 			
 		}
 				
