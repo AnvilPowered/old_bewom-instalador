@@ -36,7 +36,7 @@ public class BewomPack {
 	public static JCheckBox checkResolution = new JCheckBox("");
 	public static JCheckBox checkRAM = new JCheckBox("");
 	
-	public static String version = "1.4.0";
+	public static String version = "1.4.1";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	

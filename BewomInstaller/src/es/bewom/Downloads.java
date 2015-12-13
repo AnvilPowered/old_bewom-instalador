@@ -25,10 +25,7 @@ public class Downloads {
 	public static String minebikes 		= "minebike";
 	public static String money 			= "moneybitch";
 	public static String evs_ivs 			= "evs-ivs";
-	
-	public static String minimapa			= "blocks";
-	public static String iChunUtil			= "iChunUtil";
-	
+		
 	public static String configPixelmon 	= "pixelmon.hocon";
 	public static String configScreen		= "custom_screen.cfg";
 	
@@ -116,9 +113,6 @@ public class Downloads {
 		money 		= URLConnectionReader.getText(server + "mods/" + "money.php");
 		evs_ivs		= URLConnectionReader.getText(server + "mods/" + "evs-ivs.php");
 		
-		minimapa 	= URLConnectionReader.getText(server + "mods/" + "blocks.php");
-		iChunUtil	= URLConnectionReader.getText(server + "mods/" + "iChunUtil.php");
-		
 		if(pixelmon != null && screen != null){
 			
 			//Download mods	
@@ -147,14 +141,6 @@ public class Downloads {
 			direct.add(dir);
 			
 			files.add(evs_ivs);
-			folder.add("/mods/");
-			direct.add(dir);
-			
-			files.add(minimapa);
-			folder.add("/mods/");
-			direct.add(dir);
-			
-			files.add(iChunUtil);
 			folder.add("/mods/");
 			direct.add(dir);
 			
