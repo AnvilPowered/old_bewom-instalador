@@ -27,7 +27,7 @@ public class BewomPack {
 	
 	public static JLabel lblDescargandoPixelmon = new JLabel("Cierra el launcher de minecraft y el juego!");
 	public static JProgressBar progressBar = new JProgressBar();
-	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon (Versi\u00F3n 4.1.1)");
+	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versión 4.1.3 (diferente al anterior instalador)");
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
 	@SuppressWarnings("rawtypes")
@@ -36,7 +36,7 @@ public class BewomPack {
 	public static JCheckBox checkResolution = new JCheckBox("");
 	public static JCheckBox checkRAM = new JCheckBox("");
 	
-	public static String version = "1.4.1";
+	public static String version = "1.4.2";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
@@ -90,7 +90,7 @@ public class BewomPack {
 		int h = 256;
 		int w = 512;
 		
-		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, 540, 280);
+		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, 538, 280);
 		frmInstaladorBewom.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInstaladorBewom.getContentPane().setLayout(null);
 		chckbxPixelmon.setHorizontalAlignment(SwingConstants.LEFT);
@@ -171,10 +171,17 @@ public class BewomPack {
 		lblResolucionInicial.setForeground(new Color(51, 51, 51));
 		frmInstaladorBewom.getContentPane().add(lblResolucionInicial);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 0, 534, 64);
-		panel_1.setBackground(new Color(51, 51, 204));
-		frmInstaladorBewom.getContentPane().add(panel_1);
+		JLabel label_background = new JLabel();
+		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/snowed.png")));
+		label_background.setBackground(Color.RED);
+		label_background.setBounds(0, 0, 534, 64);
+		
+		frmInstaladorBewom.getContentPane().add(label_background);
+		
+		JPanel panel_background = new JPanel();
+		panel_background.setBounds(0, 0, 534, 64);
+		panel_background.setBackground(new Color(204, 51, 51));
+		frmInstaladorBewom.getContentPane().add(panel_background);
 		showLauncher.setBounds(6, 130, 452, 23);
 		
 		showLauncher.setSelected(true);
