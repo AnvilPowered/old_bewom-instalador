@@ -9,7 +9,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.util.List;
 
 import es.bewom.BewomPack;
 import es.bewom.Downloads;
