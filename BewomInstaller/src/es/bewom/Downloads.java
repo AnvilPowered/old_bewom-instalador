@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.bewom.downloads.Download;
+import es.bewom.util.Down;
 
 public class Downloads {
 	
@@ -24,7 +25,6 @@ public class Downloads {
 	public static String screen 			= "CustomScreen";
 	public static String minebikes 		= "minebike";
 	public static String money 			= "moneybitch";
-	public static String evs_ivs 			= "evs-ivs";
 		
 	public static String configPixelmon 	= "pixelmon.hocon";
 	public static String configScreen		= "custom_screen.cfg";
@@ -33,9 +33,13 @@ public class Downloads {
 	
 	public static BufferedReader br;
 	
+	public static List<Down> 	downs = new ArrayList<Down>();
+	public static String 		directoryPath;
+	
 	public static void download(String nDir) throws Exception{
 		
-		String dir = nDir + "/bewom/";
+		directoryPath = nDir + "/bewom/";
+		String dir = directoryPath;
 		
 		br = new BufferedReader( new FileReader(nDir + "/launcher_profiles.json"));
 		
@@ -111,43 +115,31 @@ public class Downloads {
 		screen 		= URLConnectionReader.getText(server + "mods/" + "screen.php");
 		minebikes 	= URLConnectionReader.getText(server + "mods/" + "bikes.php");
 		money 		= URLConnectionReader.getText(server + "mods/" + "money.php");
-		evs_ivs		= URLConnectionReader.getText(server + "mods/" + "evs-ivs.php");
 		
 		if(pixelmon != null && screen != null){
 			
 			//Download mods	
-			List<String> files = new ArrayList<String>();
-			List<String> folder = new ArrayList<String>();
-			List<String> direct = new ArrayList<String>();
+//			List<String> files = new ArrayList<String>();
+//			List<String> folder = new ArrayList<String>();
+//			List<String> direct = new ArrayList<String>();
 			
 			if(BewomPack.chckbxPixelmon.isSelected()){
 				
-				files.add(pixelmon);
-				folder.add("/mods/");
-				direct.add(dir);
+				String[] ex = pixelmon.split("/");
+				String[] ex_2 = ex[5].split("\\?");
+				
+				downs.add(new Down(ex_2[0], pixelmon, "mods/"));
 				
 			}
 			
-			files.add(screen);
-			folder.add("/mods/");
-			direct.add(dir);
-			
-			files.add(minebikes);
-			folder.add("/mods/");
-			direct.add(dir);
-			
-			files.add(money);
-			folder.add("/mods/");
-			direct.add(dir);
-			
-			files.add(evs_ivs);
-			folder.add("/mods/");
-			direct.add(dir);
+			downs.add(new Down(screen, server + "mods/" + screen, "mods/"));
+			downs.add(new Down(minebikes, server + "mods/" + minebikes, "mods/"));
+			downs.add(new Down(money, server + "mods/" + money, "mods/"));
 			
 			//Borrar mods no correctos!
 			BewomPack.lblDescargandoPixelmon.setText("Borrando mods incorrectos. . .");
 			String[] fil = {pixelmon, screen};
-			File f = new File(dir + "/mods/");
+			File f = new File(dir + "mods/");
 			String[] ffiles = f.list();
 			
 			if(f.length() != 0){
@@ -177,22 +169,16 @@ public class Downloads {
 			
 			//download bewom profile
 			
-			files.add(profileJson);
-			folder.add("/versions/bewom/");
-			direct.add(nDir);
+			downs.add(new Down(profileJson, server + "versions/bewom/" + profileJson, "versions/bewom/"));
 			
 			//download config
 			
-			files.add(configPixelmon);
-			folder.add("/config/");
-			direct.add(dir);
-			
+			downs.add(new Down(configPixelmon, server + "config/" + configPixelmon, "config/"));
+						
 			//download libs
 			
-			files.add(forgeLibs);
-			folder.add("/");
-			direct.add(nDir);
-			
+			downs.add(new Down(forgeLibs, server + "/" + forgeLibs, "/"));
+						
 			File writeFile = new File(dir + "/config/");
 			
 			if(!writeFile.exists()){
@@ -211,7 +197,6 @@ public class Downloads {
 			
 			BewomPack.lblDescargandoPixelmon.setText("Empezando descargas . . .");
 			Download download = new Download();
-			download.set(server, files, folder, direct);
 			download.start();
 			
 		} else {

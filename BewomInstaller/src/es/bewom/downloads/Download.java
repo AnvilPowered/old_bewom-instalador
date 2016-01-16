@@ -12,69 +12,59 @@ import java.nio.channels.ReadableByteChannel;
 import java.util.List;
 
 import es.bewom.BewomPack;
+import es.bewom.Downloads;
+import es.bewom.util.Down;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
 public class Download extends Thread {
-	
-	public String server;
-	public List<String> file;
-	public List<String> folder;
-	public List<String> directory;
-	
+		
 	public URL website;
 	public double fileSize;
-	
-	public void set(String s, List<String> f, List<String> t, List<String> d){
 		
-		this.server = s;
-		this.file = f;
-		this.folder = t;
-		this.directory = d;
-		
-	}
-	
 	@Override
 	public void run() {
 		
-		for (int i = 0; i < file.size(); i++) {
+		for (Down dw : Downloads.downs) {
 			
-			if(file.get(i) != null){
+			if(dw != null){
 				DownloadProgress dpixel = new DownloadProgress();
 				
 				try {
 					
-					BewomPack.lblDescargandoPixelmon.setText("Descargando " + file.get(i) + " . . .");
+					BewomPack.lblDescargandoPixelmon.setText("Descargando " + dw.getNameFile() + " . . .");
 					
-					File fios = new File(directory.get(i) + folder.get(i) + file.get(i));
+					File fios = new File(Downloads.directoryPath + dw.getFolderSave() + dw.getNameFile());
 					if(fios.exists()){
 						fios.delete();
 					}
 					
-					File kdir = new File(directory.get(i) + folder.get(i));
+					File kdir = new File(Downloads.directoryPath + dw.getFolderSave());
 					if(!kdir.exists()){
 						kdir.mkdirs();						
 					}
 					
 					BewomPack.progressBar.setIndeterminate(false);
 					
-					website = new URL(server + folder.get(i) + file.get(i));
+					website = new URL(dw.getUrlDownload());
 					URLConnection conn = website.openConnection();
 					fileSize = conn.getContentLength();
 					conn.getInputStream().close();
 					
-					dpixel.set(fileSize, directory.get(i) + folder.get(i) + file.get(i));
+					System.out.println(conn.getContentLength() + "-" + Downloads.directoryPath + dw.getFolderSave() + dw.getNameFile());
+					
+					dpixel.set(fileSize, Downloads.directoryPath + dw.getFolderSave() + dw.getNameFile());
 					dpixel.start();
 					
 					ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-					FileOutputStream fos = new FileOutputStream(directory.get(i) + folder.get(i) + file.get(i));
+					FileOutputStream fos = new FileOutputStream(Downloads.directoryPath + dw.getFolderSave() + dw.getNameFile());
 					fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 					fos.close();
 					
-					if(file.get(i).equals("libs.zip")){
+					if(dw.getNameFile().equals("libs.zip")){
 						
-						BewomPack.lblDescargandoPixelmon.setText("Descomprimiendo " + file.get(i) + " . . .");
-						unZipIt(directory.get(i) + folder.get(i) + file.get(i), directory.get(i) + folder.get(i));
+						BewomPack.lblDescargandoPixelmon.setText("Descomprimiendo " + dw.getNameFile() + " . . .");
+						unZipIt(Downloads.directoryPath + dw.getFolderSave() + dw.getNameFile(), Downloads.directoryPath + dw.getFolderSave());
 						
 					}
 					

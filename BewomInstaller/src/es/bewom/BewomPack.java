@@ -17,6 +17,11 @@ import java.awt.event.ActionListener;
 
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import es.bewom.Downloads.URLConnectionReader;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -27,7 +32,7 @@ public class BewomPack {
 	
 	public static JLabel lblDescargandoPixelmon = new JLabel("Cierra el launcher de minecraft y el juego!");
 	public static JProgressBar progressBar = new JProgressBar();
-	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versión 4.1.3 (diferente al anterior instalador)");
+	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.1.3 (igual al anterior instalador)");
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
 	@SuppressWarnings("rawtypes")
@@ -36,7 +41,7 @@ public class BewomPack {
 	public static JCheckBox checkResolution = new JCheckBox("");
 	public static JCheckBox checkRAM = new JCheckBox("");
 	
-	public static String version = "1.4.2";
+	public static String version = "1.4.3";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
@@ -44,8 +49,12 @@ public class BewomPack {
 	public static JTextField resWidth;
 	public static JTextField resHeight;
 	
-	public static JLabel lblMbDeRam = new JLabel("RAM m\u00E1xima");
+	public static JLabel lblMbDeRam = new JLabel("RAM m\u00E1xima (Recomendación mínima 2Gb)");
 	public static JLabel lblResolucionInicial = new JLabel("Resolucion de la ventana de minecraft");
+	private final JPanel panel_1 = new JPanel();
+	private final JPanel panel_2 = new JPanel();
+	private final JButton btnNewButton_1 = new JButton("Descargar");
+	private final JLabel lblHttpbewomesinstalador = new JLabel("http://bewom.es/instalador/");
 	
 	/**
 	 * Launch the application.
@@ -76,6 +85,14 @@ public class BewomPack {
 	@SuppressWarnings("unchecked")
 	private void initialize() {
 		
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		frmInstaladorBewom = new JFrame();
 		frmInstaladorBewom.setAlwaysOnTop(true);
 		frmInstaladorBewom.setResizable(false);
@@ -90,124 +107,129 @@ public class BewomPack {
 		int h = 256;
 		int w = 512;
 		
+		String v = URLConnectionReader.getText("http://bewom.es/instalador/config/version.cfg");
+		
+		if(!v.equalsIgnoreCase(version)){
+			panel_1.setVisible(false);
+			panel_2.setVisible(true);
+			progressBar.setIndeterminate(true);
+		} else {
+			panel_1.setVisible(true);
+			panel_2.setVisible(false);
+		}
+		
 		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, 538, 280);
 		frmInstaladorBewom.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInstaladorBewom.getContentPane().setLayout(null);
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(6, 83, 530, 161);
+		
+		frmInstaladorBewom.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		chckbxPixelmon.setBounds(0, 21, 450, 23);
+		panel_1.add(chckbxPixelmon);
 		chckbxPixelmon.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxPixelmon.setBounds(6, 104, 450, 23);
 		chckbxPixelmon.setForeground(new Color(51, 51, 51));
 		chckbxPixelmon.setBackground(new Color(255, 255, 255));
 		
 		chckbxPixelmon.setSelected(true);
-		frmInstaladorBewom.getContentPane().add(chckbxPixelmon);
-		progressBar.setBounds(-4, 64, 540, 6);
-				
-		progressBar.setBackground(new Color(0, 0, 0));
-		frmInstaladorBewom.getContentPane().add(progressBar);
-		progressBar.setValue(0);
-		progressBar.setForeground(new Color(207, 50, 50));
-		progressBar.setBackground(new Color(51, 51, 51));
-		progressBar.setBorder(BorderFactory.createEmptyBorder());
 		
 		JLabel lblVa = new JLabel(version);
-		lblVa.setBounds(396, 191, 128, 23);
+		lblVa.setBounds(390, 108, 128, 23);
+		panel_1.add(lblVa);
 		lblVa.setForeground(new Color(51, 51, 51));
 		lblVa.setHorizontalAlignment(SwingConstants.CENTER);
-		frmInstaladorBewom.getContentPane().add(lblVa);
-		btnNewButton.setBounds(396, 220, 128, 24);
+		btnNewButton.setBounds(390, 137, 128, 24);
+		panel_1.add(btnNewButton);
 		btnNewButton.setForeground(new Color(51, 51, 51));
-		frmInstaladorBewom.getContentPane().add(btnNewButton);
-		frmtdtxtfldSda.setBounds(6, 220, 380, 24);
+		frmtdtxtfldSda.setBounds(0, 137, 380, 24);
+		panel_1.add(frmtdtxtfldSda);
 		frmtdtxtfldSda.setBackground(Color.WHITE);
 		frmtdtxtfldSda.setText(System.getenv("APPDATA") + "\\.minecraft");
-		if(SO.contains("mac")){
-			frmtdtxtfldSda.setText(System.getProperty("user.home") + "/Library/Application Support/minecraft");
-		} else if(SO.contains("nux")){
-			frmtdtxtfldSda.setText("~/.minecraft/");
-		}
-		frmInstaladorBewom.getContentPane().add(frmtdtxtfldSda);
-				
-		JLabel panel = new JLabel();
-		panel.setBounds(0, 0, 534, 64);
-		panel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/logo_simple.png")));
-		frmInstaladorBewom.getContentPane().add(panel);
-		lblDescargandoPixelmon.setBounds(6, 83, 530, 14);
+		lblDescargandoPixelmon.setBounds(0, 0, 530, 14);
+		panel_1.add(lblDescargandoPixelmon);
 		
 		lblDescargandoPixelmon.setForeground(new Color(51, 51, 51));
 		
 		lblDescargandoPixelmon.setHorizontalAlignment(SwingConstants.CENTER);
-				frmInstaladorBewom.getContentPane().add(lblDescargandoPixelmon);
-		RAM.setBounds(27, 190, 60, 24);
+		RAM.setBounds(21, 107, 60, 24);
+		panel_1.add(RAM);
 		
 		RAM.setText("1536");
-		frmInstaladorBewom.getContentPane().add(RAM);
 		RAM.setColumns(10);
-		
-		lblMbDeRam.setBounds(167, 191, 142, 22);
+		RAM.setEnabled(false);
+		lblMbDeRam.setBounds(161, 108, 272, 22);
+		panel_1.add(lblMbDeRam);
 		lblMbDeRam.setForeground(new Color(51, 51, 51));
-		frmInstaladorBewom.getContentPane().add(lblMbDeRam);
-		RAMType.setBounds(97, 190, 60, 24);
+		lblMbDeRam.setEnabled(false);
+		RAMType.setBounds(91, 107, 60, 24);
+		panel_1.add(RAMType);
 		RAMType.setBackground(Color.WHITE);
 		
 		RAMType.setMaximumRowCount(2);
 		RAMType.addItem("Mb");
 		RAMType.addItem("Gb");
-		frmInstaladorBewom.getContentPane().add(RAMType);
+		RAMType.setEnabled(false);
 		
 		resWidth = new JTextField();
-		resWidth.setBounds(27, 160, 60, 24);
+		resWidth.setBounds(21, 77, 60, 24);
+		panel_1.add(resWidth);
 		resWidth.setText("1280");
 		resWidth.setColumns(10);
-		frmInstaladorBewom.getContentPane().add(resWidth);
+		resWidth.setEnabled(false);
 		
 		resHeight = new JTextField();
-		resHeight.setBounds(97, 160, 60, 24);
+		resHeight.setBounds(91, 77, 60, 24);
+		panel_1.add(resHeight);
 		resHeight.setText("720");
 		resHeight.setColumns(10);
-		frmInstaladorBewom.getContentPane().add(resHeight);
-		
-		lblResolucionInicial.setBounds(167, 161, 272, 22);
+		resHeight.setEnabled(false);
+		lblResolucionInicial.setBounds(161, 78, 272, 22);
+		panel_1.add(lblResolucionInicial);
 		lblResolucionInicial.setForeground(new Color(51, 51, 51));
-		frmInstaladorBewom.getContentPane().add(lblResolucionInicial);
-		
-		JLabel label_background = new JLabel();
-		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/snowed.png")));
-		label_background.setBackground(Color.RED);
-		label_background.setBounds(0, 0, 534, 64);
-		
-		frmInstaladorBewom.getContentPane().add(label_background);
-		
-		JPanel panel_background = new JPanel();
-		panel_background.setBounds(0, 0, 534, 64);
-		panel_background.setBackground(new Color(204, 51, 51));
-		frmInstaladorBewom.getContentPane().add(panel_background);
-		showLauncher.setBounds(6, 130, 452, 23);
+		lblResolucionInicial.setEnabled(false);
+		showLauncher.setBounds(0, 47, 452, 23);
+		panel_1.add(showLauncher);
 		
 		showLauncher.setSelected(true);
 		showLauncher.setForeground(new Color(51, 51, 51));
 		showLauncher.setBackground(new Color(255, 255, 255));
-		frmInstaladorBewom.getContentPane().add(showLauncher);
+		checkResolution.setBounds(0, 78, 21, 23);
+		panel_1.add(checkResolution);
 		
 		checkResolution.setForeground(new Color(51, 51, 51));
 		checkResolution.setBackground(Color.WHITE);
-		checkResolution.setBounds(6, 161, 21, 23);
-		frmInstaladorBewom.getContentPane().add(checkResolution);
+		
+		checkResolution.setSelected(false);
+		checkRAM.setBounds(0, 108, 21, 23);
+		panel_1.add(checkRAM);
 		
 		checkRAM.setForeground(new Color(51, 51, 51));
 		checkRAM.setBackground(Color.WHITE);
-		checkRAM.setBounds(6, 191, 21, 23);
-		frmInstaladorBewom.getContentPane().add(checkRAM);
 		
 		checkRAM.setSelected(false);
-		RAM.setEnabled(false);
-		RAMType.setEnabled(false);
-		lblMbDeRam.setEnabled(false);
 		
-		checkResolution.setSelected(false);
-		resWidth.setEnabled(false);
-		resHeight.setEnabled(false);
-		lblResolucionInicial.setEnabled(false);
+		checkRAM.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(checkRAM.isSelected()){
+					
+					RAM.setEnabled(true);
+					RAMType.setEnabled(true);
+					lblMbDeRam.setEnabled(true);
+					
+				} else {
+					
+					RAM.setEnabled(false);
+					RAMType.setEnabled(false);
+					lblMbDeRam.setEnabled(false);
+					
+				}
+				
+			}
+		});
 		
 		checkResolution.addActionListener(new ActionListener() {
 			
@@ -230,28 +252,6 @@ public class BewomPack {
 				
 			}
 			
-		});
-		
-		checkRAM.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				if(checkRAM.isSelected()){
-					
-					RAM.setEnabled(true);
-					RAMType.setEnabled(true);
-					lblMbDeRam.setEnabled(true);
-					
-				} else {
-					
-					RAM.setEnabled(false);
-					RAMType.setEnabled(false);
-					lblMbDeRam.setEnabled(false);
-					
-				}
-				
-			}
 		});
 		
 		btnNewButton.addActionListener(new ActionListener() {
@@ -290,6 +290,57 @@ public class BewomPack {
 				
 			}
 		});
+		panel_2.setBounds(6, 83, 530, 161);
+		frmInstaladorBewom.getContentPane().add(panel_2);
+		
+		panel_2.setLayout(null);
+		panel_2.setBackground(Color.WHITE);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				es.bewom.util.Util.openWebPage("http://bewom.es/instalador/");
+			}
+		});
+		btnNewButton_1.setBounds(153, 73, 200, 23);
+		
+		panel_2.add(btnNewButton_1);
+		
+		JLabel lblNewLabel = new JLabel("La versi\u00F3n de este launcher esta obsoleta, descarga la nueva haciendo click abajo...");
+		lblNewLabel.setBounds(10, 11, 510, 23);
+		panel_2.add(lblNewLabel);
+		lblHttpbewomesinstalador.setBounds(10, 31, 510, 23);
+		
+		panel_2.add(lblHttpbewomesinstalador);
+		progressBar.setBounds(-4, 64, 540, 6);
+				
+		progressBar.setBackground(new Color(0, 0, 0));
+		frmInstaladorBewom.getContentPane().add(progressBar);
+		progressBar.setValue(0);
+		progressBar.setForeground(new Color(207, 50, 50));
+		progressBar.setBackground(new Color(51, 51, 51));
+		progressBar.setBorder(BorderFactory.createEmptyBorder());
+		if(SO.contains("mac")){
+			frmtdtxtfldSda.setText(System.getProperty("user.home") + "/Library/Application Support/minecraft");
+		} else if(SO.contains("nux")){
+			frmtdtxtfldSda.setText("~/.minecraft/");
+		}
+				
+		JLabel panel = new JLabel();
+		panel.setBounds(0, 0, 534, 64);
+		panel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/logo_simple.png")));
+		frmInstaladorBewom.getContentPane().add(panel);
+		
+		JLabel label_background = new JLabel();
+//		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/snowed.png")));
+		label_background.setBackground(Color.RED);
+		label_background.setBounds(0, 0, 534, 64);
+		
+		frmInstaladorBewom.getContentPane().add(label_background);
+		
+		JPanel panel_background = new JPanel();
+		panel_background.setBounds(0, 0, 534, 64);
+		panel_background.setBackground(new Color(255, 170, 0));
+		frmInstaladorBewom.getContentPane().add(panel_background);
 		
 		
 		
