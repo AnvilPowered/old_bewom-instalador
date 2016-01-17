@@ -32,7 +32,7 @@ public class BewomPack {
 	
 	public static JLabel lblDescargandoPixelmon = new JLabel("Cierra el launcher de minecraft y el juego!");
 	public static JProgressBar progressBar = new JProgressBar();
-	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.1.3 (igual al anterior instalador)");
+	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.1.4 (diferente al anterior instalador)");
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
 	@SuppressWarnings("rawtypes")
@@ -41,7 +41,7 @@ public class BewomPack {
 	public static JCheckBox checkResolution = new JCheckBox("");
 	public static JCheckBox checkRAM = new JCheckBox("");
 	
-	public static String version = "1.4.3";
+	public static String version = "1.5";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
@@ -118,11 +118,11 @@ public class BewomPack {
 			panel_2.setVisible(false);
 		}
 		
-		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, 538, 280);
+		frmInstaladorBewom.setBounds(width/2 - w/2, height/2 - h/2, 538, 284);
 		frmInstaladorBewom.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInstaladorBewom.getContentPane().setLayout(null);
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(6, 83, 530, 161);
+		panel_1.setBounds(10, 83, 512, 161);
 		
 		frmInstaladorBewom.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -139,7 +139,7 @@ public class BewomPack {
 		panel_1.add(lblVa);
 		lblVa.setForeground(new Color(51, 51, 51));
 		lblVa.setHorizontalAlignment(SwingConstants.CENTER);
-		btnNewButton.setBounds(390, 137, 128, 24);
+		btnNewButton.setBounds(390, 137, 122, 24);
 		panel_1.add(btnNewButton);
 		btnNewButton.setForeground(new Color(51, 51, 51));
 		frmtdtxtfldSda.setBounds(0, 137, 380, 24);
@@ -290,7 +290,7 @@ public class BewomPack {
 				
 			}
 		});
-		panel_2.setBounds(6, 83, 530, 161);
+		panel_2.setBounds(10, 83, 512, 161);
 		frmInstaladorBewom.getContentPane().add(panel_2);
 		
 		panel_2.setLayout(null);
@@ -300,7 +300,7 @@ public class BewomPack {
 				es.bewom.util.Util.openWebPage("http://bewom.es/instalador/");
 			}
 		});
-		btnNewButton_1.setBounds(153, 73, 200, 23);
+		btnNewButton_1.setBounds(110, 90, 292, 23);
 		
 		panel_2.add(btnNewButton_1);
 		
@@ -331,7 +331,7 @@ public class BewomPack {
 		frmInstaladorBewom.getContentPane().add(panel);
 		
 		JLabel label_background = new JLabel();
-//		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/snowed.png")));
+		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/grad.png")));
 		label_background.setBackground(Color.RED);
 		label_background.setBounds(0, 0, 534, 64);
 		
@@ -339,7 +339,7 @@ public class BewomPack {
 		
 		JPanel panel_background = new JPanel();
 		panel_background.setBounds(0, 0, 534, 64);
-		panel_background.setBackground(new Color(255, 170, 0));
+		panel_background.setBackground(new Color(51, 204, 255));
 		frmInstaladorBewom.getContentPane().add(panel_background);
 		
 		
