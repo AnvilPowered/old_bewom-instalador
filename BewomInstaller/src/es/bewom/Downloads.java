@@ -38,7 +38,7 @@ public class Downloads {
 	
 	public static void download(String nDir) throws Exception{
 		
-		directoryPath = nDir + "/bewom/";
+		directoryPath = nDir + "/";
 		String dir = directoryPath;
 		
 		br = new BufferedReader( new FileReader(nDir + "/launcher_profiles.json"));
@@ -98,7 +98,7 @@ public class Downloads {
 				show = "hide launcher and re-open when game closes";
 			}
 			
-			String profile = "\"bewom_" + BewomPack.version + "\": {\"name\": \"bewom_" + BewomPack.version + "\",\"gameDir\": \"" + dir.replace("\\", "\\\\")  +"\",\"lastVersionId\": \"bewom\" " + ramm + resolution + ", \"launcherVisibilityOnGameClose\": \"" + show + "\"},";
+			String profile = "\"bewom_" + BewomPack.version + "\": {\"name\": \"bewom_" + BewomPack.version + "\",\"gameDir\": \"" + dir.replace("\\", "\\\\") + "bewom/"  +"\",\"lastVersionId\": \"bewom\" " + ramm + resolution + ", \"launcherVisibilityOnGameClose\": \"" + show + "\"},";
 			
 			text = part1 + profile + part2 + "bewom_" + BewomPack.version + part3;
 			
@@ -128,18 +128,18 @@ public class Downloads {
 				String[] ex = pixelmon.split("/");
 				String[] ex_2 = ex[5].split("\\?");
 				
-				downs.add(new Down(ex_2[0], pixelmon, "mods/"));
+				downs.add(new Down(ex_2[0], pixelmon, "bewom/mods/"));
 				
 			}
 			
-			downs.add(new Down(screen, server + "mods/" + screen, "mods/"));
-			downs.add(new Down(minebikes, server + "mods/" + minebikes, "mods/"));
-			downs.add(new Down(money, server + "mods/" + money, "mods/"));
+			downs.add(new Down(screen, server + "mods/" + screen, "bewom/mods/"));
+			downs.add(new Down(minebikes, server + "mods/" + minebikes, "bewom/mods/"));
+			downs.add(new Down(money, server + "mods/" + money, "bewom/mods/"));
 			
 			//Borrar mods no correctos!
 			BewomPack.lblDescargandoPixelmon.setText("Borrando mods incorrectos. . .");
 			String[] fil = {pixelmon, screen};
-			File f = new File(dir + "mods/");
+			File f = new File(dir + "bewom/mods/");
 			String[] ffiles = f.list();
 			
 			if(f.length() != 0){
@@ -173,13 +173,13 @@ public class Downloads {
 			
 			//download config
 			
-			downs.add(new Down(configPixelmon, server + "config/" + configPixelmon, "config/"));
+			downs.add(new Down(configPixelmon, server + "config/" + configPixelmon, "bewom/config/"));
 						
 			//download libs
 			
 			downs.add(new Down(forgeLibs, server + "/" + forgeLibs, "/"));
 						
-			File writeFile = new File(dir + "/config/");
+			File writeFile = new File(dir + "bewom/config/");
 			
 			if(!writeFile.exists()){
 				BewomPack.lblDescargandoPixelmon.setText("Creando directorio /config/. . .");
@@ -189,7 +189,7 @@ public class Downloads {
 			String version = "# Configuration file \n \n general { \n # Este campo no debe ser modificado, solo el instalador lo puede cambiar [default: 0.0.0] \n S:\"Version del Pack\"=" + BewomPack.version + "\n }";
 			
 			BewomPack.lblDescargandoPixelmon.setText("Creando archvio de configuración /custom_screen.cfg . . .");
-			FileWriter write = new FileWriter(dir + "/config/custom_screen.cfg");
+			FileWriter write = new FileWriter(dir + "bewom/config/custom_screen.cfg");
 			write.write(version);
 			write.close();
 			

@@ -25,14 +25,15 @@ import es.bewom.Downloads.URLConnectionReader;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import java.awt.Font;
 
 public class BewomPack {
 
 	private JFrame frmInstaladorBewom;
 	
-	public static JLabel lblDescargandoPixelmon = new JLabel("Cierra el launcher de minecraft y el juego!");
+	public static JLabel lblDescargandoPixelmon = new JLabel("Abre una vez el launcher de minecraft y cierralo antes de empezar la instalaci\u00F3n!");
 	public static JProgressBar progressBar = new JProgressBar();
-	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.1.4 (diferente al anterior instalador)");
+	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.1.4 (igual al anterior launcher)");
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
 	@SuppressWarnings("rawtypes")
@@ -41,7 +42,7 @@ public class BewomPack {
 	public static JCheckBox checkResolution = new JCheckBox("");
 	public static JCheckBox checkRAM = new JCheckBox("");
 	
-	public static String version = "1.5";
+	public static String version = "1.5.1";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
@@ -126,6 +127,7 @@ public class BewomPack {
 		
 		frmInstaladorBewom.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
+		chckbxPixelmon.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		chckbxPixelmon.setBounds(0, 21, 450, 23);
 		panel_1.add(chckbxPixelmon);
 		chckbxPixelmon.setHorizontalAlignment(SwingConstants.LEFT);
@@ -135,7 +137,8 @@ public class BewomPack {
 		chckbxPixelmon.setSelected(true);
 		
 		JLabel lblVa = new JLabel(version);
-		lblVa.setBounds(390, 108, 128, 23);
+		lblVa.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblVa.setBounds(390, 108, 122, 23);
 		panel_1.add(lblVa);
 		lblVa.setForeground(new Color(51, 51, 51));
 		lblVa.setHorizontalAlignment(SwingConstants.CENTER);
@@ -146,7 +149,8 @@ public class BewomPack {
 		panel_1.add(frmtdtxtfldSda);
 		frmtdtxtfldSda.setBackground(Color.WHITE);
 		frmtdtxtfldSda.setText(System.getenv("APPDATA") + "\\.minecraft");
-		lblDescargandoPixelmon.setBounds(0, 0, 530, 14);
+		lblDescargandoPixelmon.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDescargandoPixelmon.setBounds(0, 0, 512, 14);
 		panel_1.add(lblDescargandoPixelmon);
 		
 		lblDescargandoPixelmon.setForeground(new Color(51, 51, 51));
@@ -158,10 +162,12 @@ public class BewomPack {
 		RAM.setText("1536");
 		RAM.setColumns(10);
 		RAM.setEnabled(false);
+		lblMbDeRam.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblMbDeRam.setBounds(161, 108, 272, 22);
 		panel_1.add(lblMbDeRam);
 		lblMbDeRam.setForeground(new Color(51, 51, 51));
 		lblMbDeRam.setEnabled(false);
+		RAMType.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		RAMType.setBounds(91, 107, 60, 24);
 		panel_1.add(RAMType);
 		RAMType.setBackground(Color.WHITE);
@@ -184,10 +190,12 @@ public class BewomPack {
 		resHeight.setText("720");
 		resHeight.setColumns(10);
 		resHeight.setEnabled(false);
+		lblResolucionInicial.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblResolucionInicial.setBounds(161, 78, 272, 22);
 		panel_1.add(lblResolucionInicial);
 		lblResolucionInicial.setForeground(new Color(51, 51, 51));
 		lblResolucionInicial.setEnabled(false);
+		showLauncher.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		showLauncher.setBounds(0, 47, 452, 23);
 		panel_1.add(showLauncher);
 		
@@ -331,7 +339,7 @@ public class BewomPack {
 		frmInstaladorBewom.getContentPane().add(panel);
 		
 		JLabel label_background = new JLabel();
-		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/grad.png")));
+		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/ws.png")));
 		label_background.setBackground(Color.RED);
 		label_background.setBounds(0, 0, 534, 64);
 		
@@ -339,7 +347,7 @@ public class BewomPack {
 		
 		JPanel panel_background = new JPanel();
 		panel_background.setBounds(0, 0, 534, 64);
-		panel_background.setBackground(new Color(51, 204, 255));
+		panel_background.setBackground(new Color(60, 179, 113));
 		frmInstaladorBewom.getContentPane().add(panel_background);
 		
 		
