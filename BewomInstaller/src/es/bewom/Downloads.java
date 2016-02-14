@@ -25,6 +25,7 @@ public class Downloads {
 	public static String screen 			= "CustomScreen";
 	public static String minebikes 		= "minebike";
 	public static String money 			= "moneybitch";
+	public static String chisel 			= "chisel";
 		
 	public static String configPixelmon 	= "pixelmon.hocon";
 	public static String configScreen		= "custom_screen.cfg";
@@ -115,6 +116,7 @@ public class Downloads {
 		screen 		= URLConnectionReader.getText(server + "mods/" + "screen.php");
 		minebikes 	= URLConnectionReader.getText(server + "mods/" + "bikes.php");
 		money 		= URLConnectionReader.getText(server + "mods/" + "money.php");
+		chisel 		= URLConnectionReader.getText(server + "mods/" + "chisel.php");
 		
 		if(pixelmon != null && screen != null){
 			
@@ -132,9 +134,10 @@ public class Downloads {
 				
 			}
 			
-			downs.add(new Down(screen, server + "mods/" + screen, "bewom/mods/"));
-			downs.add(new Down(minebikes, server + "mods/" + minebikes, "bewom/mods/"));
-			downs.add(new Down(money, server + "mods/" + money, "bewom/mods/"));
+			downs.add(new Down(screen, 		server + "mods/" + screen, 		"bewom/mods/"));
+			downs.add(new Down(minebikes, 	server + "mods/" + minebikes, 	"bewom/mods/"));
+			downs.add(new Down(money, 		server + "mods/" + money, 		"bewom/mods/"));
+			downs.add(new Down(chisel, 		server + "mods/" + chisel, 		"bewom/mods/"));
 			
 			//Borrar mods no correctos!
 			BewomPack.lblDescargandoPixelmon.setText("Borrando mods incorrectos. . .");

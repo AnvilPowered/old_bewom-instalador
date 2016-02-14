@@ -33,7 +33,7 @@ public class BewomPack {
 	
 	public static JLabel lblDescargandoPixelmon = new JLabel("Abre una vez el launcher de minecraft y cierralo antes de empezar la instalaci\u00F3n!");
 	public static JProgressBar progressBar = new JProgressBar();
-	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.1.4 (igual al anterior launcher)");
+	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.2.0 (diferente al anterior launcher)");
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
 	@SuppressWarnings("rawtypes")
@@ -42,7 +42,7 @@ public class BewomPack {
 	public static JCheckBox checkResolution = new JCheckBox("");
 	public static JCheckBox checkRAM = new JCheckBox("");
 	
-	public static String version = "1.5.1";
+	public static String version = "2.0";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
@@ -339,7 +339,7 @@ public class BewomPack {
 		frmInstaladorBewom.getContentPane().add(panel);
 		
 		JLabel label_background = new JLabel();
-		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/ws.png")));
+		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/suns.png")));
 		label_background.setBackground(Color.RED);
 		label_background.setBounds(0, 0, 534, 64);
 		
@@ -347,7 +347,7 @@ public class BewomPack {
 		
 		JPanel panel_background = new JPanel();
 		panel_background.setBounds(0, 0, 534, 64);
-		panel_background.setBackground(new Color(60, 179, 113));
+		panel_background.setBackground(new Color(204, 0, 51));
 		frmInstaladorBewom.getContentPane().add(panel_background);
 		
 		
