@@ -33,7 +33,7 @@ public class BewomPack {
 	
 	public static JLabel lblDescargandoPixelmon = new JLabel("Abre una vez el launcher de minecraft y cierralo antes de empezar la instalaci\u00F3n!");
 	public static JProgressBar progressBar = new JProgressBar();
-	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.2.0 (diferente al anterior launcher)");
+	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.1.4");
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
 	@SuppressWarnings("rawtypes")
@@ -42,7 +42,7 @@ public class BewomPack {
 	public static JCheckBox checkResolution = new JCheckBox("");
 	public static JCheckBox checkRAM = new JCheckBox("");
 	
-	public static String version = "2.0";
+	public static String version = "pre-2.0";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
