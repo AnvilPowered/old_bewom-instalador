@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import java.awt.Font;
+import java.awt.SystemColor;
 
 public class BewomPack {
 
@@ -33,7 +34,7 @@ public class BewomPack {
 	
 	public static JLabel lblDescargandoPixelmon = new JLabel("Abre una vez el launcher de minecraft y cierralo antes de empezar la instalaci\u00F3n!");
 	public static JProgressBar progressBar = new JProgressBar();
-	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.1.4");
+	public static JCheckBox chckbxPixelmon = new JCheckBox("Pixelmon versi\u00F3n 4.2.3");
 	public static JFormattedTextField frmtdtxtfldSda = new JFormattedTextField();
 	public static JButton btnNewButton = new JButton("Instalar");
 	@SuppressWarnings("rawtypes")
@@ -42,7 +43,7 @@ public class BewomPack {
 	public static JCheckBox checkResolution = new JCheckBox("");
 	public static JCheckBox checkRAM = new JCheckBox("");
 	
-	public static String version = "pre-2.0";
+	public static String version = "2.0.1";
 	
 	public static String SO = System.getProperty("os.name").toLowerCase();
 	
@@ -50,7 +51,7 @@ public class BewomPack {
 	public static JTextField resWidth;
 	public static JTextField resHeight;
 	
-	public static JLabel lblMbDeRam = new JLabel("RAM m\u00E1xima (Recomendación mínima 2Gb)");
+	public static JLabel lblMbDeRam = new JLabel("RAM m\u00E1xima");
 	public static JLabel lblResolucionInicial = new JLabel("Resolucion de la ventana de minecraft");
 	private final JPanel panel_1 = new JPanel();
 	private final JPanel panel_2 = new JPanel();
@@ -156,26 +157,29 @@ public class BewomPack {
 		lblDescargandoPixelmon.setForeground(new Color(51, 51, 51));
 		
 		lblDescargandoPixelmon.setHorizontalAlignment(SwingConstants.CENTER);
+		RAM.setForeground(SystemColor.desktop);
 		RAM.setBounds(21, 107, 60, 24);
 		panel_1.add(RAM);
 		
-		RAM.setText("1536");
+		int ra = Math.round((Runtime.getRuntime().maxMemory() / 1048576f));
+		
+		RAM.setText(ra + "");
 		RAM.setColumns(10);
-		RAM.setEnabled(false);
 		lblMbDeRam.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblMbDeRam.setBounds(161, 108, 272, 22);
 		panel_1.add(lblMbDeRam);
 		lblMbDeRam.setForeground(new Color(51, 51, 51));
 		lblMbDeRam.setEnabled(false);
+		RAMType.setForeground(SystemColor.desktop);
+		RAMType.setEditable(true);
 		RAMType.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		RAMType.setBounds(91, 107, 60, 24);
 		panel_1.add(RAMType);
 		RAMType.setBackground(Color.WHITE);
-		
+				
 		RAMType.setMaximumRowCount(2);
 		RAMType.addItem("Mb");
 		RAMType.addItem("Gb");
-		RAMType.setEnabled(false);
 		
 		resWidth = new JTextField();
 		resWidth.setBounds(21, 77, 60, 24);
@@ -215,7 +219,7 @@ public class BewomPack {
 		checkRAM.setForeground(new Color(51, 51, 51));
 		checkRAM.setBackground(Color.WHITE);
 		
-		checkRAM.setSelected(false);
+		checkRAM.setSelected(true);
 		
 		checkRAM.addActionListener(new ActionListener() {
 			
@@ -339,7 +343,7 @@ public class BewomPack {
 		frmInstaladorBewom.getContentPane().add(panel);
 		
 		JLabel label_background = new JLabel();
-		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/suns.png")));
+		label_background.setIcon(new ImageIcon(BewomPack.class.getResource("/es/bewom/assets/strips.png")));
 		label_background.setBackground(Color.RED);
 		label_background.setBounds(0, 0, 534, 64);
 		
@@ -347,10 +351,8 @@ public class BewomPack {
 		
 		JPanel panel_background = new JPanel();
 		panel_background.setBounds(0, 0, 534, 64);
-		panel_background.setBackground(new Color(204, 0, 51));
-		frmInstaladorBewom.getContentPane().add(panel_background);
-		
-		
+		panel_background.setBackground(new Color(204, 255, 51));
+		frmInstaladorBewom.getContentPane().add(panel_background);	
 		
 	}
 }
